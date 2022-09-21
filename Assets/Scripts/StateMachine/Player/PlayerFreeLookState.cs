@@ -6,22 +6,25 @@ public class PlayerFreeLookState : PlayerBaseState
 {
 
     private readonly int FREE_LOOK_SPEED_HASH = Animator.StringToHash("FreeLookSpeed");
+    private readonly int FREE_LOOK_BLEND_TREE_HASH = Animator.StringToHash("FreeLookBlendTree");
     private const float ANIMATOR_DAMP_TIME = .1f;
 
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
 
-    public override void Start()
+    public override void Enter()
     {
-        
+        stateMachine.InputReader.TargetEvent += OnTarget;
+
+        stateMachine.Animator.Play(FREE_LOOK_BLEND_TREE_HASH);
     }
 
     public override void Tick(float deltaTime)
     {
         Vector3 movement = CalculateMovement();
 
-        stateMachine.CharacterController.Move(movement * stateMachine.FreeLookMovementSpeed * deltaTime);
+        Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
 
         if (stateMachine.InputReader.MovementValue == Vector2.zero) 
         {
@@ -35,7 +38,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Exit()
     {
-        
+        stateMachine.InputReader.TargetEvent -= OnTarget;
     }
 
     private Vector3 CalculateMovement()
@@ -55,6 +58,13 @@ public class PlayerFreeLookState : PlayerBaseState
     private void FaceMovementDirection(Vector3 movement, float deltaTime)
     {
         stateMachine.transform.rotation = Quaternion.Lerp(stateMachine.transform.rotation, Quaternion.LookRotation(movement), stateMachine.RotationSmoothValue * deltaTime);
+    }
+
+    private void OnTarget()
+    {
+        if(!stateMachine.Targeter.SetTarget()) { return; }
+
+        stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
     }
 
 }
