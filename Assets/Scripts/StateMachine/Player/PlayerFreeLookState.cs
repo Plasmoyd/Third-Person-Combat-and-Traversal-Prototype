@@ -8,6 +8,7 @@ public class PlayerFreeLookState : PlayerBaseState
     private readonly int FREE_LOOK_SPEED_HASH = Animator.StringToHash("FreeLookSpeed");
     private readonly int FREE_LOOK_BLEND_TREE_HASH = Animator.StringToHash("FreeLookBlendTree");
     private const float ANIMATOR_DAMP_TIME = .1f;
+    private const float CROSS_FADE_DURATION = .1f;
 
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
@@ -17,11 +18,17 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.InputReader.TargetEvent += OnTarget;
 
-        stateMachine.Animator.Play(FREE_LOOK_BLEND_TREE_HASH);
+        stateMachine.Animator.CrossFadeInFixedTime(FREE_LOOK_BLEND_TREE_HASH, CROSS_FADE_DURATION);
     }
 
     public override void Tick(float deltaTime)
     {
+        if(stateMachine.InputReader.IsAttacking)
+        {
+            stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
+            return;
+        }
+
         Vector3 movement = CalculateMovement();
 
         Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);

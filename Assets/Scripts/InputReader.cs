@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class InputReader : MonoBehaviour, Controls.IPlayerActions
 {
     public Vector2 MovementValue { get; private set; }
+    public bool IsAttacking { get; private set; }
 
     public event Action JumpEvent;
     public event Action DodgeEvent;
@@ -64,5 +65,23 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         if(!context.performed) { return; }
 
         CancelEvent?.Invoke();
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+
+        /* 
+         CONSIDER REFACTORING THIS METHOD. I WANT PLAYER TO CLICK EVERY SINGLE TIME THEY WANT TO ATTACK, WHILE IN COURSE THEY WANT TO
+         ENABLE PLAYER TO JUST HOLD DOWN THE BUTTON, AND DO THE COMBO
+         */
+
+        if(context.performed)
+        {
+            IsAttacking = true;
+        }
+        else if(context.canceled)
+        {
+            IsAttacking = false;
+        }
     }
 }

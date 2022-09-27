@@ -11,6 +11,11 @@ public abstract class PlayerBaseState : State
         this.stateMachine = stateMachine;
     }
 
+    protected void Move(float deltaTime)
+    {
+        Move(Vector3.zero, deltaTime);
+    }
+
     protected void Move(Vector3 movement, float deltaTime)
     {
         movement += stateMachine.ForceReceiver.Movement(); // this is calulating a movement vector by taking in consideration player input or motion vector, and adding gravity into equation

@@ -8,6 +8,7 @@ public class PlayerTargetingState : PlayerBaseState
     private readonly int TARGETING_BLEND_TREE_HASH = Animator.StringToHash("TargetingBlendTree");
     private readonly int TARGETING_FORWARD_HASH = Animator.StringToHash("TargetingForward");
     private readonly int TARGETING_RIGHT_HASH = Animator.StringToHash("TargetingRight");
+    private const float CROSS_FADE_DURATION = .1f;
 
     public PlayerTargetingState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
@@ -17,11 +18,17 @@ public class PlayerTargetingState : PlayerBaseState
     {
         stateMachine.InputReader.CancelEvent += OnCancel;
 
-        stateMachine.Animator.Play(TARGETING_BLEND_TREE_HASH);
+        stateMachine.Animator.CrossFadeInFixedTime(TARGETING_BLEND_TREE_HASH, CROSS_FADE_DURATION);
     }
 
     public override void Tick(float deltaTime)
     {
+        if(stateMachine.InputReader.IsAttacking)
+        {
+            stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
+            return;
+        }
+
         if(stateMachine.Targeter.CurrentTarget == null)
         {
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
@@ -50,8 +57,8 @@ public class PlayerTargetingState : PlayerBaseState
     {
         Vector3 movement = new Vector3();
 
-        movement += stateMachine.transform.forward * stateMachine.InputReader.MovementValue.y;
-        movement += stateMachine.transform.right * stateMachine.InputReader.MovementValue.x;
+        movement += stateMachine.transform.forward.normalized * stateMachine.InputReader.MovementValue.y;
+        movement += stateMachine.transform.right.normalized * stateMachine.InputReader.MovementValue.x;
 
         return movement;
     }
