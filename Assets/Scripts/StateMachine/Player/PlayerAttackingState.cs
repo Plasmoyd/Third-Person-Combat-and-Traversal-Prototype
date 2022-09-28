@@ -8,6 +8,7 @@ public class PlayerAttackingState : PlayerBaseState
     private const float CROSS_FADE_DURATION = .1f;
 
     private Attack attack;
+    private  bool alreadyAppliedForce;
     private float previousFrameTime;
 
     public PlayerAttackingState(PlayerStateMachine stateMachine, int attackIndex) : base(stateMachine)
@@ -17,7 +18,7 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Enter()
     {
-        stateMachine.Weapon.SetAttack(attack.Damage);
+        stateMachine.Weapon.SetAttack(attack.Damage, attack.Knockback);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, CROSS_FADE_DURATION);
     }
 
@@ -31,7 +32,12 @@ public class PlayerAttackingState : PlayerBaseState
 
         if( normalizedTime < 1f)
         {
-            if(stateMachine.InputReader.IsAttacking)
+            if (normalizedTime < attack.ForceTime)
+            {
+                TryApplyForce();
+            }
+
+            if (stateMachine.InputReader.IsAttacking)
             {
                 TryComboAttack(normalizedTime);
             }
@@ -68,4 +74,10 @@ public class PlayerAttackingState : PlayerBaseState
             ));
     }
 
+    private void TryApplyForce()
+    {
+        if(alreadyAppliedForce) { return; }
+        stateMachine.ForceReceiver.AddForce(stateMachine.transform.forward * attack.Force);
+        alreadyAppliedForce = true;
+    }
 }

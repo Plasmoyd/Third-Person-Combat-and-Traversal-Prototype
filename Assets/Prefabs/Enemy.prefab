@@ -1663,10 +1663,12 @@ MonoBehaviour:
   <NavAgent>k__BackingField: {fileID: 6195423493474972676}
   <ForceReceiver>k__BackingField: {fileID: 2645892114048944365}
   <Weapon>k__BackingField: {fileID: 8503891121187981381}
+  <Health>k__BackingField: {fileID: 7665050295184097746}
   <PlayerChasingRange>k__BackingField: 10
   <MovementSpeed>k__BackingField: 3
   <AttackRange>k__BackingField: 1.5
   <AttackDamage>k__BackingField: 20
+  <AttackKnockback>k__BackingField: 7.5
 --- !u!114 &1234770103720278380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1705,6 +1707,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 3429501092293486092}
+  drag: 0.3
+  agent: {fileID: 6195423493474972676}
 --- !u!114 &817445531
 MonoBehaviour:
   m_ObjectHideFlags: 0

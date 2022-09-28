@@ -50,9 +50,13 @@ public class EnemyChasingState : EnemyBaseState
 
     private void MoveToPlayer(float deltraTime)
     {
-        stateMachine.NavAgent.destination = stateMachine.Player.transform.position;
+        if (stateMachine.NavAgent.isOnNavMesh)
+        {
+            stateMachine.NavAgent.destination = stateMachine.Player.transform.position;
 
-        Move(stateMachine.NavAgent.desiredVelocity.normalized * stateMachine.MovementSpeed, deltraTime);
+            Move(stateMachine.NavAgent.desiredVelocity.normalized * stateMachine.MovementSpeed, deltraTime);
+        }
+        
         stateMachine.NavAgent.velocity = stateMachine.Controller.velocity;
     }
 

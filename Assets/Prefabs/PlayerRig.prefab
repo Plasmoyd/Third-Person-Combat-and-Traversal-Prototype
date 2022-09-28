@@ -1240,6 +1240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 9031301030153896120}
+  drag: 0.1
 --- !u!4 &4461799727099092452 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4403106818219692120, guid: df4f07913e1a1b6489e0a1973fc028a2, type: 3}
