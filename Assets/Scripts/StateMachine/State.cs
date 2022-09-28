@@ -9,4 +9,24 @@ public abstract class State
     public abstract void Tick(float deltaTime);
 
     public abstract void Exit();
+
+    protected float GetNormalizedAnimationTime(Animator animator)
+    {
+
+        AnimatorStateInfo currentStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo nextStateInfo = animator.GetNextAnimatorStateInfo(0);
+
+        if (animator.IsInTransition(0) && nextStateInfo.IsTag("Attack"))
+        {
+            return nextStateInfo.normalizedTime;
+        }
+        else if (!animator.IsInTransition(0) && currentStateInfo.IsTag("Attack"))
+        {
+            return currentStateInfo.normalizedTime;
+        }
+        else
+        {
+            return 0f;
+        }
+    }
 }
