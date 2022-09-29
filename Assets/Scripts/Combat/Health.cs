@@ -6,6 +6,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public event Action OnTakeDamage;
+    public event Action OnDie;
 
     [SerializeField] private int maxHealth = 100;
 
@@ -18,10 +19,20 @@ public class Health : MonoBehaviour
 
     public void DealDamage(int damage)
     {
-        if(currentHealth <= 0) { return; }
+        if(currentHealth <= 0) 
+        {
+            return; 
+        }
 
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
         OnTakeDamage?.Invoke();
+
+        if (currentHealth <= 0)
+        {
+            OnDie?.Invoke();
+
+            return;
+        }
 
         Debug.Log(currentHealth);
     }

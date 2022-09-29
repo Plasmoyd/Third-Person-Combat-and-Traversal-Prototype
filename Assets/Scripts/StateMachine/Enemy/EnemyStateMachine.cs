@@ -11,6 +11,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public WeaponDamage Weapon { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public Target Target { get; private set; }
 
     [field: SerializeField] public float PlayerChasingRange { get; private set; }
     [field: SerializeField] public float MovementSpeed { get; private set; }
@@ -33,11 +34,13 @@ public class EnemyStateMachine : StateMachine
     private void OnEnable()
     {
         Health.OnTakeDamage += HandleTakeDamage;
+        Health.OnDie += HandleDeath;
     }
 
     private void OnDisable()
     {
         Health.OnTakeDamage -= HandleTakeDamage;
+        Health.OnDie -= HandleDeath;
     }
 
     private void OnDrawGizmosSelected()
@@ -49,5 +52,10 @@ public class EnemyStateMachine : StateMachine
     private void HandleTakeDamage()
     {
         SwitchState(new EnemyImpactState(this));
+    }
+
+    private void HandleDeath()
+    {
+        SwitchState(new EnemyDeadState(this));
     }
 }
