@@ -24,6 +24,8 @@ public class EnemyAttackingState : EnemyBaseState
         {
             stateMachine.SwitchState(new EnemyChasingState(stateMachine));
         }
+
+        RotateToPlayer();
     }
 
     public override void Exit()

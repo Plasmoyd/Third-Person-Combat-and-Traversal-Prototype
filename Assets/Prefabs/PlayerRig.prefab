@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3141717060450171826}
   m_LocalRotation: {x: 0.15839615, y: -0.05693799, z: 0.008700909, w: -0.98569417}
-  m_LocalPosition: {x: -0.00000006882553, y: 0, z: 4.2720017}
+  m_LocalPosition: {x: 0.000000068825514, y: -0.00000011920929, z: 4.2720017}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -710,7 +710,7 @@ MonoBehaviour:
     m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
-    m_InheritPosition: 0
+    m_InheritPosition: 1
     m_OnCameraLive:
       m_PersistentCalls:
         m_Calls: []
@@ -1241,6 +1241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 9031301030153896120}
   drag: 0.1
+  agent: {fileID: 0}
 --- !u!4 &4461799727099092452 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4403106818219692120, guid: df4f07913e1a1b6489e0a1973fc028a2, type: 3}
