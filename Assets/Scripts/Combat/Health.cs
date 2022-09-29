@@ -11,6 +11,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
 
     private int currentHealth;
+    private bool isBlocking;
 
     private void Awake()
     {
@@ -24,6 +25,11 @@ public class Health : MonoBehaviour
             return; 
         }
 
+        if (isBlocking)
+        {
+            return;
+        }
+
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
         OnTakeDamage?.Invoke();
 
@@ -35,5 +41,10 @@ public class Health : MonoBehaviour
         }
 
         Debug.Log(currentHealth);
+    }
+
+    public void SetIsBlocking(bool isBlocking)
+    {
+        this.isBlocking = isBlocking;
     }
 }
