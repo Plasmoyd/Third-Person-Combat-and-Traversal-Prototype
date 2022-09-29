@@ -798,7 +798,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126288642}
-  m_LocalRotation: {x: 0.051621314, y: -0.000028514247, z: 0.000001473908, w: 0.99866676}
+  m_LocalRotation: {x: 0.051621314, y: -0.00002852284, z: 0.000001474352, w: 0.99866676}
   m_LocalPosition: {x: -1.8577719, y: 5.52995, z: -5.4711986}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1624,23 +1624,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4257169231049370779, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.1784248
+      value: 0.17842482
       objectReference: {fileID: 0}
     - target: {fileID: 4257169231049370779, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008465139
+      value: 0.000000008465141
       objectReference: {fileID: 0}
     - target: {fileID: 4257169231049370779, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000015350226
+      value: -0.0000000015350229
       objectReference: {fileID: 0}
     - target: {fileID: 4268522109462329518, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000000068825514
+      value: -0.00000006882553
       objectReference: {fileID: 0}
     - target: {fileID: 4268522109462329518, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00000011920929
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5494778482492603297, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_DefaultBlend.m_Time
@@ -1652,7 +1652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5494778482492603297, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_ChildCameras.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5494778482492603297, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_ParentHash.Array.data[4].m_Hash
@@ -1736,11 +1736,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6593922696472466122, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000021464075
+      value: -0.0000000064301275
       objectReference: {fileID: 0}
     - target: {fileID: 6593922696472466122, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.8303581e-10
+      value: 5.4888005e-10
       objectReference: {fileID: 0}
     - target: {fileID: 6593922696485263068, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1816,11 +1816,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6593922697075810487, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000021373123
+      value: -0.0000000064173937
       objectReference: {fileID: 0}
     - target: {fileID: 6593922697075810487, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 2.2146193e-10
+      value: 6.6495426e-10
       objectReference: {fileID: 0}
     - target: {fileID: 6593922697302700780, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_Transitions.m_BlendHint
@@ -1849,6 +1849,18 @@ PrefabInstance:
     - target: {fileID: 7904160944197676513, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: m_HorizontalDamping
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574605071442811940, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
+      propertyPath: <DodgeLength>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574605071442811940, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
+      propertyPath: <DodgeCooldown>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574605071442811940, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
+      propertyPath: <DodgeDuration>k__BackingField
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8574605071442811940, guid: a07843c6b8de4f747832a3c881e4e3c8, type: 3}
       propertyPath: <Attacks>k__BackingField.Array.data[0].<Damage>k__BackingField

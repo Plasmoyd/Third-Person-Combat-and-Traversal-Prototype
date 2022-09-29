@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
 
     private int currentHealth;
-    private bool isBlocking;
+    private bool isInvulnerable;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
             return; 
         }
 
-        if (isBlocking)
+        if (isInvulnerable)
         {
             return;
         }
@@ -43,8 +43,8 @@ public class Health : MonoBehaviour
         Debug.Log(currentHealth);
     }
 
-    public void SetIsBlocking(bool isBlocking)
+    public void SetIsInvulnerable(bool isBlocking)
     {
-        this.isBlocking = isBlocking;
+        this.isInvulnerable = isBlocking;
     }
 }

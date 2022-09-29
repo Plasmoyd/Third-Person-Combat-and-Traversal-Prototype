@@ -8,6 +8,7 @@ public class PlayerTargetingState : PlayerBaseState
     private readonly int TARGETING_BLEND_TREE_HASH = Animator.StringToHash("TargetingBlendTree");
     private readonly int TARGETING_FORWARD_HASH = Animator.StringToHash("TargetingForward");
     private readonly int TARGETING_RIGHT_HASH = Animator.StringToHash("TargetingRight");
+
     private const float CROSS_FADE_DURATION = .1f;
 
     public PlayerTargetingState(PlayerStateMachine stateMachine) : base(stateMachine)
@@ -17,6 +18,7 @@ public class PlayerTargetingState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.InputReader.CancelEvent += OnCancel;
+        stateMachine.InputReader.DodgeEvent += OnDodge;
 
         stateMachine.Animator.CrossFadeInFixedTime(TARGETING_BLEND_TREE_HASH, CROSS_FADE_DURATION);
     }
@@ -41,7 +43,7 @@ public class PlayerTargetingState : PlayerBaseState
             return;
         }
 
-        Vector3 movement = CalculateMovement();
+        Vector3 movement = CalculateMovement(deltaTime);
         Move(movement * stateMachine.TargetingMovementSpeed, deltaTime);
         UpdateAnimator(deltaTime);
 
@@ -51,6 +53,7 @@ public class PlayerTargetingState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputReader.CancelEvent -= OnCancel;
+        stateMachine.InputReader.DodgeEvent -= OnDodge;
     }
 
     private void OnCancel()
@@ -59,7 +62,14 @@ public class PlayerTargetingState : PlayerBaseState
         stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
     }
 
-    private Vector3 CalculateMovement()
+    private void OnDodge()
+    {
+        if (stateMachine.InputReader.MovementValue == Vector2.zero) { return; }
+
+        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.MovementValue));
+    }
+
+    private Vector3 CalculateMovement(float deltaTime)
     {
         Vector3 movement = new Vector3();
 

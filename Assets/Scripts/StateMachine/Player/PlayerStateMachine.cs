@@ -17,6 +17,8 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
     [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
     [field: SerializeField] public float RotationSmoothValue { get; private set; }
+    [field: SerializeField] public float DodgeDuration { get; private set; }
+    [field: SerializeField] public float DodgeLength { get; private set; }
 
     public Transform MainCameraTransform { get; private set; }
 
@@ -48,4 +50,5 @@ public class PlayerStateMachine : StateMachine
     {
         SwitchState(new PlayerDeadState(this));
     }
+
 }

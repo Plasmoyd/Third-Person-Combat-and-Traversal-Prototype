@@ -15,7 +15,7 @@ public class PlayerBlockingState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.Animator.CrossFadeInFixedTime(BLOCKING_IDLE_HASH, CROSS_FADE_DURATION);
-        stateMachine.Health.SetIsBlocking(true);
+        stateMachine.Health.SetIsInvulnerable(true);
     }
 
     public override void Tick(float deltaTime)
@@ -30,7 +30,7 @@ public class PlayerBlockingState : PlayerBaseState
 
     public override void Exit()
     {
-        stateMachine.Health.SetIsBlocking(false);
+        stateMachine.Health.SetIsInvulnerable(false);
     }
 
 }
